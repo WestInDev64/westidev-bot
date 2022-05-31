@@ -1,0 +1,21 @@
+{
+  "name": "westindev-bot",
+  "version": "0.0.1",
+  "description": "Bot discord général du serveur WestInDev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "WestInDev",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^13.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.16.0"
+  }
+}
