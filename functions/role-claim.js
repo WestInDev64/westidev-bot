@@ -2,21 +2,21 @@
 const { Client, MessageReaction, User } = require('discord.js');
 const firstMessage = require('./first-msg');
 
-const ROLE_CHANNEL_ID = '981193791144857651';
+const ROLE_CHANNEL_ID = '1011708536721514629';
 
 /**
  * Récupération des customs émoji et des roles */
-const emojisPro = {
-    boss: 'Chef d\'entreprise',
-    dev: 'Développeur',
-    design: 'UX/UI Designer - Graphise',
-    marketing: 'Webmarketing - SEO',
-    security: 'Cybersécurité',
+const emojis = {
     system: 'Admin Système - DevOps',
+    boss: 'Chef d\'entreprise',
     po: 'Chef de projet - Scrum Master - PO',
-    formateur: 'Formateur Tech',
+    security: 'Cybersécurité',
     data: 'Data Analyst / Scientist / Engineer',
+    dev: 'Développeur',
     student: 'Étudiant',
+    formateur: 'Formateur Tech',
+    design: 'UX/UI Designer - Graphiste',
+    marketing: 'Webmarketing - SEO',
 };
 
 /* const emojisGeo = {
@@ -41,7 +41,7 @@ const handleReacts = (reaction, user, add) => {
     // on récupère le serveur
     const { guild } = reaction.message;
     // on récupère le nom du role
-    const roleName = emojisPro[emojiName];
+    const roleName = emojis[emojiName];
 
     if (!roleName) return;
     // on cherche le bon role dans le serveur
@@ -99,14 +99,14 @@ module.exports = (bot) => {
     const getEmoji = (emojiName) => bot.emojis.cache.find(emoji => emoji.name === emojiName);
     const reactions = [];
 
-    let text = 'Réagis avec l\'un des émojis pour obtenir le rôle qui te correspond le mieux : \n\n';
-    for (const key in emojisPro) {
+    let text = '> Réagis avec les émojis pour obtenir les rôles qui te correspondent le mieux : \n\n';
+    for (const key in emojis) {
         const emoji = getEmoji(key);
-        console.log('emoji = ' + emoji);
+        //console.log('emoji = ' + emoji);
         if (!emoji) return;
         reactions.push(emoji);
-        text += `${emoji} : ${emojisPro[key]}\n`;
-        console.log(key);
+        text += `${emoji} : ${emojis[key]}\n\r`;
+        //console.log(key);
     }
 
     /*     let text2 = 'Sélectionne ta localisation en réagissant à l\'un des émojis suivants: \n\n';
@@ -121,7 +121,6 @@ module.exports = (bot) => {
 
 
     firstMessage(channel, text, reactions);
-    //firstMessage(channel, text2, reactions);
 
     bot.on('messageReactionAdd', (reaction, user) => {
         // Si notre réaction provient de notre channel
